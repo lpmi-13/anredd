@@ -2,8 +2,6 @@ var express = require('express'),
 	http    = require('http'),
 	favicon = require('serve-favicon'),
 	bodyparser = require('body-parser'),
-	restler = require('restler'),
-	request = require('request'),
 	app		= express();
 
 
@@ -39,17 +37,16 @@ http.get(url, function(res) {
 	res.on('end', function() {
 		var prompts = JSON.parse(body);
 		var valz = getValues(prompts, 'title');
-		// for (var i in valz) {
-		// 	if (i.indexOf("WP") >= 0) {
-		// 		vArr.push(i);
-		// 	}
-		// };
+		
 		var vArr = valz.map(function(t) {
 			if (t.indexOf('[WP]') >= 0) {
 				return t;
 			}
 		});
 		console.log(vArr);
+		app.get('/', function(req, res) {
+			res.render('index', {rez: vArr});
+		})
 		// console.log(valz);
 	});
 
@@ -76,4 +73,4 @@ http.get(url, function(res) {
 //       console.log("Got error: ", e);
 // });
 
-// app.listen(3000);
+app.listen(process.env.PORT);

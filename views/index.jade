@@ -5,12 +5,14 @@ head
   link(rel="stylesheet" href="/public/styles/custom.css")
 body
 header
-  h1 Reddapp
+  h1 AnRedd
 
   div(class="first")
     input(type="button", id="crick", value="crick for JSON")
 
   div(id="reddit-content")
-    "#{rez}"
+    ul#list
+      each i in rez
+        li= i
 
 footer
