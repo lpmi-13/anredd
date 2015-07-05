@@ -1,0 +1,19 @@
+{
+  "name": "reddapp",
+  "version": "0.0.1",
+  "private": true,
+  "description": "this is a test to fetch reddit as JSON",
+  "author": "Adam Leskis",
+  "main": "app.js",
+  "dependencies": {
+    "express": "~4.12.0",
+    "jade": "^1.10.0",
+    "serve-favicon": "~2.2.0",
+    "restler": "2.x.x",
+    "body-parser": "*"
+  },
+  "engine": {
+    "node": "0.10.25",
+    "npm": "*"
+  }
+}
