@@ -4,15 +4,29 @@ head
   script(src="/public/scripts/jquery-1.11.3.min.js")
   link(rel="stylesheet" href="/public/styles/custom.css")
 body
-header
-  h1 AnRedd
-
-  div(class="first")
-    input(type="button", id="crick", value="crick for JSON")
+  header
+    h1 AnRedd
+  div(class="container")    
+    p.
+      click on the prompt you like and go to the story!
 
   div(id="reddit-content")
-    ul#list
-      each i in rez
-        li= i
+    ul#t_list
+      each i in titlez
+        li.res= i
+    ul#u_list
+      each i in urlz
+        li.res=i
+
+  script.
+    $(document).ready(function() {
+
+      $("li").each(function() {
+        if ($(this).text().toLowerCase().indexOf('wp') < 0) {
+          $(this).remove();
+        }
+      });
+
+    });
 
 footer

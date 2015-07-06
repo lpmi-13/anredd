@@ -36,17 +36,28 @@ http.get(url, function(res) {
 
 	res.on('end', function() {
 		var prompts = JSON.parse(body);
-		var valz = getValues(prompts, 'title');
+		var title_vals = getValues(prompts, 'title');
+		var url_vals = getValues(prompts, 'url');
 		
-		var vArr = valz.map(function(t) {
+		//only get prompts that have WP
+		var tArr = title_vals.map(function(t) {
 			if (t.indexOf('[WP]') >= 0) {
 				return t;
 			}
 		});
-		console.log(vArr);
-		app.get('/', function(req, res) {
-			res.render('index', {rez: vArr});
+
+		//only return urls to are matched with WPs
+		var uArr = url_vals.map(function(t) {
+			if (t.indexOf('wp') >= 0) {
+				return t;
+			}
 		})
+
+		console.log(tArr);
+		console.log(uArr);
+		app.get('/', function(req, res) {
+			res.render('index', {titlez: tArr, urlz: uArr});
+		});
 		// console.log(valz);
 	});
 
@@ -73,4 +84,4 @@ http.get(url, function(res) {
 //       console.log("Got error: ", e);
 // });
 
-app.listen(process.env.PORT);
+app.listen(3000);
