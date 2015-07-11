@@ -1,8 +1,8 @@
 var express = require('express'),
-	http    = require('http'),
-	favicon = require('serve-favicon'),
-	bodyparser = require('body-parser'),
-	app		= express();
+    favicon = require('serve-favicon'),
+    bodyparser = require('body-parser'),
+    r       = require('nraw'),
+    app     = express();
 
 
 app.set('views', './views');
@@ -11,6 +11,31 @@ app.set('view engine', 'jade');
 app.use(express.static(__dirname, 'public'));
 app.use(bodyparser.urlencoded({extended: false}));
 app.use(favicon(__dirname + '/public/favicon.ico'));
+
+var reddit = new r("reddz v0.0.1");
+
+app.get('/', function(req, res) {
+	reddit.subreddit("WritingPrompts").exec(function(data) {
+		if (data) {
+		var topics =  getValues(data, 'title');
+		var id = getValues(data, 'id');
+		var wpz = [];
+		// only get prompts that have WP
+		var tArr = topics.map(function(t) {
+			if ((t.indexOf('WP') >= 0) || (t.indexOf('wp') >= 0)) {
+				wpz.push(topics.indexOf(t));
+				return t;
+			}
+		});
+		var good_ids = [];
+
+		for (i = 0; i < wpz.length; i++) {
+			good_ids[i] = id[wpz[i]];
+		}
+		}
+	    res.render('index', {titlez: tArr, idz: good_ids});
+	});
+});
 
 function getValues(obj, key) {
     var objects = [];
@@ -25,63 +50,21 @@ function getValues(obj, key) {
     return objects;
 }
 
-var url = 'http://www.reddit.com/r/WritingPrompts/.json'
-
-http.get(url, function(res) {
-	var body = '';
-
-	res.on('data', function(chunk) {
-		body += chunk;
-	});
-
-	res.on('end', function() {
-		var prompts = JSON.parse(body);
-		var title_vals = getValues(prompts, 'title');
-		var url_vals = getValues(prompts, 'url');
+app.post('/', function(req, res) {
+	var id = req.body.url;
+	reddit.subreddit("WritingPrompts").post(id).exec(function(data) {
+		var comments = getValues(data, 'body');
 		
-		//only get prompts that have WP
-		var tArr = title_vals.map(function(t) {
-			if (t.indexOf('[WP]') >= 0) {
-				return t;
-			}
-		});
+		var story = comments.sort(function (a, b) { return b.length - a.length; })[0];
+		
+		var tButton = '<select class="the btn" name="the"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
 
-		//only return urls to are matched with WPs
-		var uArr = url_vals.map(function(t) {
-			if (t.indexOf('wp') >= 0) {
-				return t;
-			}
-		})
+        var anButton = '<select class="an btn" name="an"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
 
-		console.log(tArr);
-		console.log(uArr);
-		app.get('/', function(req, res) {
-			res.render('index', {titlez: tArr, urlz: uArr});
+        var aButton = '<select class="a btn" name="a"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
+
+		res.end(story);
 		});
-		// console.log(valz);
 	});
 
-}).on('error', function(e) {
-	console.log("got error: ", e);
-});
-
-//THIS WORKS!!!!!
-// var site = 'http://www.reddit.com/r/WritingPrompts/comments/3c5yg6/wp_the_monster_in_the_closet_finally_lures_the/.json?sort=top';
-
-// http.get(site, function(res) {
-//     var body = '';
-
-//     res.on('data', function(chunk) {
-//         body += chunk;
-//     });
-
-//     res.on('end', function() {
-//         var redditResponse = JSON.parse(body)
-//         var valz = getValues(redditResponse, 'body');
-//         console.log("Got response: ", valz[5]);
-//     });
-// }).on('error', function(e) {
-//       console.log("Got error: ", e);
-// });
-
-app.listen(process.env.PORT);
+app.listen(3000);

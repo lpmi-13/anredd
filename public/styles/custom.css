@@ -15,6 +15,10 @@ body {
   color: #444;
 }
 
+a {
+  color: #ffffff;
+}
+
 .second {
 	font-size: 20px;
 }
@@ -38,6 +42,30 @@ body {
   overflow: auto;
 }
 
-#u_list {
+#boom {
   display: none;
+}
+
+.story {
+  font-family: 'Quicksand';
+  color: #e6dae1;
+  margin: 30px 0px 30px 0px;
+  padding: 5px;
+  font-size: 20px;
+  list-style-type: none;
+  list-style-position: left;
+  text-align: left;
+  background-color: #104E8B;
+  border-radius: 10px;
+  text-shadow: 0px -1px 0px #c42700;
+  overflow: auto;
+}
+
+.back {
+  float: right;
+  font-size: 20px;
+}
+
+#check {
+  font-size: 20px;
 }
