@@ -46,7 +46,7 @@ body
   
           console.log(typeof data);
 
-          $(".container").replaceWith('<br><input type="submit", id="check", value="check answers"/><input type="button", class="back", value="Go Back", onclick="history.go(0)"/>');
+          $(".container").replaceWith('<br><input type="submit", id="check", value="check answers"/><input type="button", class="back", value="Go Back", onclick="history.go(0)"/><br>');
           $(".container").append('<p>"if your answers are correct, they will turn green!"</p>');
 
           $("#reddit-content").replaceWith('<div class="story">' + data + '</div>');
