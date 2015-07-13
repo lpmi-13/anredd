@@ -13,7 +13,7 @@ body
   div(id="reddit-content")
     ul#t_list
       each i in titlez
-        li.res= i
+        button.res= i
     ul#i_list
       each i in idz
         li#boom= i
@@ -38,14 +38,12 @@ body
       }
       
       var code = [];
-      $(".res").on("click", function() {
+      $(".res").one("click", function() {
         var index = $(this).parent().children().index(this);
         code = ids[index];
         
         $.post("/", {url: code}, function (data) {
   
-          console.log(typeof data);
-
           $(".container").replaceWith('<br><input type="submit", id="check", value="check answers"/><input type="button", class="back", value="Go Back", onclick="history.go(0)"/><br>');
           $(".container").append('<p>"if your answers are correct, they will turn green!"</p>');
 
@@ -69,7 +67,6 @@ body
           tempArr[i] = "" + aButton + "";
         }
       }
-      console.log(tempArr);
       var fStory = tempArr.join(' ');
       $('.story').html(fStory);
 
