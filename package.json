@@ -9,7 +9,8 @@
     "express": "~4.12.0",
     "jade": "^1.10.0",
     "serve-favicon": "~2.2.0",
-    "body-parser": "*"
+    "body-parser": "*",
+    "nraw": "~0.2.5"
   },
   "engine": {
     "node": "0.10.25",
