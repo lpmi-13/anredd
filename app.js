@@ -19,8 +19,7 @@ app.get('/', function(req, res) {
 		if (data) {
 		var topics =  getValues(data, 'title');
 		var id = getValues(data, 'id');
-		console.log(topics);
-		console.log(id);
+		
 		var wpz = [];
 		// only get prompts that have WP
 		var tArr = topics.map(function(t) {
@@ -62,13 +61,13 @@ app.post('/', function(req, res) {
 				comments[i] = 'x';
 			}
 		}
-		// var story = comments.sort(function (a, b) { return b.length - a.length; })[0];
+		var story = comments.sort(function (a, b) { return b.length - a.length; })[0];
 		
-		// var tButton = '<select class="the btn" name="the"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
+		var tButton = '<select class="the btn" name="the"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
 
-  //       var anButton = '<select class="an btn" name="an"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
+        var anButton = '<select class="an btn" name="an"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
 
-  //       var aButton = '<select class="a btn" name="a"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
+        var aButton = '<select class="a btn" name="a"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
 
 		res.end(story);
 	
