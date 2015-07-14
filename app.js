@@ -15,10 +15,12 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 var reddit = new r("reddz v0.0.1");
 
 app.get('/', function(req, res) {
-	reddit.subreddit("WritingPrompts", function(data) {
+	reddit.subreddit("WritingPrompts").exec(function(data) {
 		if (data) {
 		var topics =  getValues(data, 'title');
 		var id = getValues(data, 'id');
+		console.log(topics);
+		console.log(id);
 		var wpz = [];
 		// only get prompts that have WP
 		var tArr = topics.map(function(t) {
@@ -52,8 +54,7 @@ function getValues(obj, key) {
 
 app.post('/', function(req, res) {
 	var id = req.body.url;
-		// reddit.subreddit("WritingPrompts").post(id).exec(function(data) {
-			reddit.subreddit("WritingPrompts").post(id, function(data) {
+		reddit.subreddit("WritingPrompts").post(id).exec(function(data) {
 		var comments = getValues(data, 'body');
 		
 		for (i = 0; i < comments.length; i++) {
@@ -63,9 +64,15 @@ app.post('/', function(req, res) {
 		}
 		var story = comments.sort(function (a, b) { return b.length - a.length; })[0];
 		
+		var tButton = '<select class="the btn" name="the"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
+
+        var anButton = '<select class="an btn" name="an"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
+
+        var aButton = '<select class="a btn" name="a"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
+
 		res.end(story);
 	
 		});
 	});
 
-app.listen(process.env.PORT);
+app.listen(3000);

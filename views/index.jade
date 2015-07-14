@@ -28,20 +28,18 @@ body
       });
       
       var arrz = [];
-      $('li').each(function() {
+      $('ul').children().each(function() {
         arrz.push($(this).text());
       });
-
+      console.log(arrz);
       var ids = [];
       for (i = (arrz.length/2); i < arrz.length; i++) {
         ids.push(arrz[i]);
       }
-      
       var code = [];
       $(".res").one("click", function() {
         var index = $(this).parent().children().index(this);
         code = ids[index];
-        
         $.post("/", {url: code}, function (data) {
   
           $(".container").replaceWith('<br><input type="submit", id="check", value="check answers"/><input type="button", class="back", value="Go Back", onclick="history.go(0)"/><br>');
@@ -51,46 +49,46 @@ body
 
           var tButton = '<select class="the btn" name="the"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
 
-      var anButton = '<select class="an btn" name="an"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
+          var anButton = '<select class="an btn" name="an"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
 
-      var aButton = '<select class="a btn" name="a"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
+          var aButton = '<select class="a btn" name="a"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
 
-      var tempArr = $('.story').text().split(' ');
-      for (i = 0; i < tempArr.length; i++) {
-        if (tempArr[i] == 'the') {
-          tempArr[i] = "" + tButton + "";
-        }
-        if (tempArr[i] == 'an') {
-          tempArr[i] = "" + anButton + "";
-        }
-        if (tempArr[i] == 'a') {
-          tempArr[i] = "" + aButton + "";
-        }
-      }
-      var fStory = tempArr.join(' ');
-      $('.story').html(fStory);
+          var tempArr = $('.story').text().split(' ');
+          for (i = 0; i < tempArr.length; i++) {
+            if (tempArr[i] == 'the') {
+              tempArr[i] = "" + tButton + "";
+            }
+            if (tempArr[i] == 'an') {
+              tempArr[i] = "" + anButton + "";
+            }
+            if (tempArr[i] == 'a') {
+              tempArr[i] = "" + aButton + "";
+            }
+          }
+          var fStory = tempArr.join(' ');
+          $('.story').html(fStory);
 
-      $("#check").click(function() {
-          $(".the").each(function() {
+          $("#check").click(function() {
+            $(".the").each(function() {
              if ($(this).val() == 'the') {
                  $(this).css("background-color", "#00FF00");
                  $(this).css("pointer-events", "none");
              }
-          });
-          $(".an").each(function() {
+            });
+            $(".an").each(function() {
              if ($(this).val() == 'an') {
                  $(this).css("background-color", "#00FF00");
                  $(this).css("pointer-events", "none");
              }
-          });
-          $(".a").each(function() {
+            });
+            $(".a").each(function() {
              if ($(this).val() == 'a') {
                  $(this).css("background-color", "#00FF00");
                  $(this).css("pointer-events", "none");
              }
+            });
           });
-      });
-      });
+        });
       });
 
     });
