@@ -63,12 +63,6 @@ app.post('/', function(req, res) {
 		}
 		var story = comments.sort(function (a, b) { return b.length - a.length; })[0];
 		
-		var tButton = '<select class="the btn" name="the"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
-
-        var anButton = '<select class="an btn" name="an"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
-
-        var aButton = '<select class="a btn" name="a"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
-
 		res.end(story);
 	
 		});

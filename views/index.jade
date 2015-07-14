@@ -3,7 +3,12 @@ head
   meta(name='viewport', content='width=device-width, initial-scale=1')
   script(src="/public/scripts/jquery-1.11.3.min.js")
   link(rel="stylesheet" href="/public/styles/custom.css")
+  script.
+    $(window).load(function() {
+            $(".loader").fadeOut("slow");
+          });
 body
+  div(class="loader")
   header
     h1 AnRedd
   div(class="container")    
@@ -31,17 +36,17 @@ body
       $('ul').children().each(function() {
         arrz.push($(this).text());
       });
-      console.log(arrz);
       var ids = [];
       for (i = (arrz.length/2); i < arrz.length; i++) {
         ids.push(arrz[i]);
       }
       var code = [];
       $(".res").one("click", function() {
+        $(this).css("pointer-events", "none");
         var index = $(this).parent().children().index(this);
         code = ids[index];
         $.post("/", {url: code}, function (data) {
-  
+
           $(".container").replaceWith('<br><input type="submit", id="check", value="check answers"/><input type="button", class="back", value="Go Back", onclick="history.go(0)"/><br>');
           $(".container").append('<p>"if your answers are correct, they will turn green!"</p>');
 
