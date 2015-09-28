@@ -73,6 +73,8 @@ body
           var fStory = tempArr.join(' ');
           $('.story').html(fStory);
 
+          $('html, body').animate({ scrollTop: 0 }, 0);
+
           $("#check").click(function() {
             $(".the").each(function() {
              if ($(this).val() == 'the') {
