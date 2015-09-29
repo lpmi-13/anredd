@@ -11,6 +11,7 @@ header {
 
 body {
   font-family: 'Georgia';
+  font-size: 30px;
   background-color: #e6dae1;
   color: #444;
 }
@@ -42,7 +43,7 @@ a {
   color: #e6dae1;
   margin: 30px 0px 30px 0px;
   padding: 5px;
-  font-size: 20px;
+  font-size: 30px;
   list-style-type: none;
   list-style-position: left;
   text-align: left;
@@ -62,7 +63,7 @@ a {
   color: #e6dae1;
   margin: 30px 0px 30px 0px;
   padding: 5px;
-  font-size: 20px;
+  font-size: 30px;
   list-style-type: none;
   list-style-position: left;
   text-align: left;
@@ -72,11 +73,18 @@ a {
   overflow: auto;
 }
 
-.back {
-  float: right;
-  font-size: 20px;
+#check {
+  font-size: 40px;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  border-radius: 10px
 }
 
-#check {
-  font-size: 20px;
+.back {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  font-size: 40px;
+  border-radius: 10px;
 }
