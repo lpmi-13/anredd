@@ -2,12 +2,14 @@ var express = require('express'),
     favicon = require('serve-favicon'),
     bodyparser = require('body-parser'),
     r       = require('nraw'),
+    compress = require('compression'),
     app     = express();
 
 
 app.set('views', './views');
 app.set('view engine', 'jade');
 
+app.use(compress());
 app.use(express.static(__dirname, 'public'));
 app.use(bodyparser.urlencoded({extended: false}));
 app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -68,4 +70,4 @@ app.post('/', function(req, res) {
 		});
 	});
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 3000);
