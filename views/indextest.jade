@@ -5,7 +5,6 @@ head
   script(src="//code.jquery.com/jquery-1.11.3.min.js")
   
 body(style="font-family: 'Georgia';font-size:20px;background-color:#e6dae1;color:#444;")
-  div(class="loader")
   header(style="font-family:'Quicksand';color:#e6dae1;padding: 5px 2px;font-size:25px;text-align:center;background-color:#104E8B;border-bottom: 1px solid #c42700;text-shadow: 0px -1px 0px #c42700;")
     h1 AnRedd
   div(class="container")    
@@ -15,8 +14,8 @@ body(style="font-family: 'Georgia';font-size:20px;background-color:#e6dae1;color
   div(id="reddit-content")
     ul#t_list(style="padding-left:0px;")
       each i in titlez
-        button.res= i
-    ul#i_list(style="display:none;")
+        button.res(style="font-family:'Quicksand';color:#e6dae1;margin: 30px 0px 30px 0px;padding:5px;font-size: 22px;list-style-type:none;list-style-position:left;text-align:left;background-color:#104E8B;border-radius:10px;overflow:auto;width:100%;")= i
+    ul#i_list
       each i in idz
         li#boom= i
 
@@ -27,19 +26,6 @@ body(style="font-family: 'Georgia';font-size:20px;background-color:#e6dae1;color
         if ($(this).text().toLowerCase().indexOf('wp') < 0) {
           $(this).remove();
         }
-        $(this).css({
-        "font-family":"Quicksand",
-        "color":"#e6dae1",
-        "margin":"30px 0px 30px 0px",
-        "padding":"5px",
-        "font-size":"22px",
-        "list-style-type":"none",
-        "list-style-position":"left",
-        "text-align":"left",
-        "background-color":"#104E8B",
-        "border-radius":"10px",
-        "overflow":"auto",
-        "width":"100%"})
       });
       
       var arrz = [];
