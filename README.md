@@ -6,5 +6,5 @@ to select the original article.
 
 <b>Directions for future development (PRs welcome!)</b>
 
--switch process of user interaction to supplying articles instead of selecting them (possibly using an angular editable directive
+-switch process of user interaction to supplying articles instead of selecting them, possibly using an angular editable directive
 or some other 'click to edit' functionaility
