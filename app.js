@@ -53,7 +53,7 @@ function getValues(obj, key) {
     return objects;
 }
 
-app.post('/anredd', function(req, res) {
+app.post('/', function(req, res) {
 	var id = req.body.url;
 		reddit.subreddit("WritingPrompts").post(id).exec(function(data) {
 		var comments = getValues(data, 'body');
