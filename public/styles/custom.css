@@ -7,7 +7,7 @@
   list-style-type: none;
   list-style-position: left;
   text-align: left;
-  background-color: #104E8B;
+  background-color: #104e8b;
   border-radius: 10px;
   overflow: auto;
 }
@@ -17,7 +17,7 @@
   position: fixed;
   top: 15px;
   left: 15px;
-  border-radius: 10px
+  border-radius: 10px;
 }
 
 .back {
@@ -26,4 +26,4 @@
   right: 15px;
   font-size: 22px;
   border-radius: 10px;
-} 
+}
