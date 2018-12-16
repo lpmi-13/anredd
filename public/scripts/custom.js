@@ -34,10 +34,14 @@ $(document).ready(function() {
       code = ids[index];
       $.post("/anredd", {url: code}, function (data) {
 
-        $(".container").replaceWith('<br><input type="submit", id="check", value="Check Answers"/><input type="button", class="back", value="Go Back", onclick="history.go(0)"/><br>');
+        $(".container").replaceWith('<br><input type="submit", id="check", value="Check Answers"/><input id="back-button" type="button", class="back", value="Go Back" /><br>');
         $(".container").append('<p>"if your answers are correct, they will turn green!"</p>');
 
         $("#reddit-content").replaceWith('<div class="story">' + data + '</div>');
+
+        $('#back-button').click(function() {
+          history.go(0);
+        });
 
         var tButton = '<select class="the btn" name="the"><option value="null">(select)</option><option value="the">the</option><option value="a">a</option><option value="an">an</option></select>'
 
